@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StPeters.pageAbout"
+             Title="About"
+             BackgroundColor="White">
+    <VerticalStackLayout Padding="5"
+                         Spacing="30"
+                         HorizontalOptions="Center"
+                         VerticalOptions="End">
+        <Image Source="about.jpg"
+               IsVisible="True"
+               VerticalOptions="Start"
+               HorizontalOptions="Center" />
+        <Label x:Name="lblVersion"
+               TextColor="Black"
+               HorizontalTextAlignment="Center" />
+        <Label Text="Produced by the grace of God &amp; with the prayers and support of St Peters RC Parish, Calgary. Content copyright of originators &amp; shared with their consent."
+               TextColor="Black"
+               HorizontalTextAlignment="Center" />
+        <Button x:Name="btnLink"
+                Text="www.st-peters.ca"
+                TextColor="Blue" BackgroundColor="White" />
+    </VerticalStackLayout>
+</ContentPage>

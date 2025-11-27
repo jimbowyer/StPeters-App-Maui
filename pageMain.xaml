@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StPeters.pageMain">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="tbAbout" IconImageSource="info.png" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Padding="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Source="stpeter.png" Aspect="AspectFill" />
+        <StackLayout VerticalOptions="End" Spacing="10" Grid.Row="0" Grid.Column="0">
+            <!-- Hidden activity indicator (used by original page) -->
+            <ActivityIndicator x:Name="actIndicator" IsVisible="False" IsRunning="False" Color="Green" Scale="3" />
+
+            <!-- Main app buttons mirroring pageMain.cs -->
+            <Button x:Name="btnReflections" Text="Reflections - " BackgroundColor="Green" TextColor="White" BorderWidth="0" WidthRequest="290" />
+            <Button x:Name="btnReadings" Text="Mass Readings - Season (X)" BackgroundColor="Green" TextColor="White" BorderWidth="0" WidthRequest="290" />
+            <Button x:Name="btnFindMass" Text="Find Mass/Reconciliation" BackgroundColor="Green" TextColor="White" BorderWidth="0" WidthRequest="290" />
+            <Button x:Name="btnBulletins" Text="Parish Web/Bulletins" BackgroundColor="Green" TextColor="White" BorderWidth="0" WidthRequest="290" />
+            <Button x:Name="btnMysteries" Text="Today - Mysteries" BackgroundColor="Green" TextColor="White" BorderWidth="0" WidthRequest="290" Margin="0,0,0,10" />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
