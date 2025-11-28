@@ -26,9 +26,11 @@
 		<ApplicationId>ca.st-peters.rockapp</ApplicationId>
 
 		<!-- Versions -->
-		<ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-		<ApplicationVersion>3</ApplicationVersion>
-
+		<ApplicationDisplayVersion>3.0.03</ApplicationDisplayVersion>
+		<ApplicationVersion>303</ApplicationVersion>
+    <Version>3.0.3</Version>
+    <AssemblyVersion>3.0.3.3</AssemblyVersion>
+    
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
 
@@ -38,14 +40,12 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 
-    <Version>3.0.0</Version>
-    <AssemblyVersion>3.0.0.1</AssemblyVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-ios'">
 	  <ProvisioningType>manual</ProvisioningType>
-	  <CodesignKey>Apple Distribution: James Bowyer (ZD6FL5P36A)</CodesignKey>
-	  <CodesignProvision>stpetersdistprovprofile</CodesignProvision>
+	  <CodesignKey>Apple Development: Created via API (46Z766QUS4)</CodesignKey>
+	  <CodesignProvision>ca.st-peters.rockapp4</CodesignProvision>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
@@ -56,7 +56,7 @@
 	  <BuildIpa>True</BuildIpa>
 	</PropertyGroup>
 
-	<ItemGroup>
+  <ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.png" Color="#FFFFFF" />
 

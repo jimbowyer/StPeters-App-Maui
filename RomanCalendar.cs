@@ -2,7 +2,7 @@
 
 namespace StPeters
 {
-    /// <summary> Based on rules for General Roman Calendar for RC Liturgical Calendar
+    /// <summary> Calculates seasons based on rules for General Roman Calendar for RC Liturgical Calendar </summary>
     internal class RomanCalendar
     {
         public Season SeasonOf(DateTime dteToFind)

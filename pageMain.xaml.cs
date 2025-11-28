@@ -1,6 +1,6 @@
-﻿using Microsoft.Maui.Graphics;
+﻿using Microsoft.Maui.Devices.Sensors;
+using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Graphics.Text;
-using Microsoft.Maui.Devices.Sensors;
 using System;
 using System.Threading.Tasks;
 
@@ -10,8 +10,8 @@ namespace StPeters
     {
         Color mcolorBack = new Color();
         Color mcolorText = new Color();
-        string? mstrSeason;
-        string? mstrYearCycle;
+        string? mstrSeason = null;
+        string? mstrYearCycle = null;
         DayOfWeek mDoW;
         
 
@@ -21,10 +21,11 @@ namespace StPeters
 
             const string cWEB = "www.st-peters.ca";
             const string cSEARCH = "www.google.com/maps/search/catholic/@";
-            const string cDEFQUE = "51.114515,-114.2201127,11z?hl=en-CA";
-            GetSeasonVars(ref mstrSeason, ref mcolorBack, ref mcolorText, ref mstrYearCycle);
+            const string cDEFQUE = "51.11304,-114.193474,11z?hl=en-CA";
+            GetSeasonVars(out mstrSeason, ref mcolorBack, ref mcolorText, out mstrYearCycle);
             mDoW = WhatDay();
 
+            //~~~~~button work~~~~~~
             btnReflections.Text = "Reflections - " + DateTime.Now.ToString("m");
             btnReflections.BackgroundColor = mcolorBack;
             btnReflections.TextColor = mcolorText;
@@ -49,8 +50,20 @@ namespace StPeters
             btnFindMass.Clicked += async (sender, args) =>
             {
                 Uri uriMap;
-                Location? location = await Geolocation.GetLastKnownLocationAsync();
-                if (location != null)
+                Location? location = null; 
+
+                // Check permission
+                var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                if (status != PermissionStatus.Granted) //request:
+                {
+                    status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                }
+                if (status == PermissionStatus.Granted)
+                {
+                    location = await Geolocation.GetLastKnownLocationAsync();
+                }
+
+                if (location is not null)
                 {
                     string sLong = location.Longitude.ToString();
                     string sLat = location.Latitude.ToString();
@@ -88,7 +101,7 @@ namespace StPeters
             };  
 
 
-            //~~~tool bar~~~
+            //~~~~~tool bar work~~~~~~
             ToolbarItem tbMenu = new ToolbarItem
             {
                 Text = "about",
@@ -103,7 +116,7 @@ namespace StPeters
 
         } //pageMain ctor
 
-        private void GetSeasonVars(ref string pSeason, ref Color pcolorBack, ref Color pcolorText, ref string pCycle)
+        private static void GetSeasonVars(out string pSeason, ref Color pcolorBack, ref Color pcolorText, out string pCycle)
         {
             RomanCalendar cal = new RomanCalendar();
             Season seaNow;
@@ -141,12 +154,12 @@ namespace StPeters
             }
             catch (Exception)
             {
-                //we errored - log later - rtn safe
+                //we errored - set error values & rtn safely
                 pSeason = "Undefined Season";
+                pCycle = "X";
                 pcolorBack = Colors.Blue;
                 pcolorText = Colors.White;
             }
-
         } //GetSeasonVars
 
         private DayOfWeek WhatDay()

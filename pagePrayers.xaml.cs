@@ -9,11 +9,11 @@ public partial class pagePrayers : ContentPage
 	{
 		InitializeComponent();
 
-        const string cURL = "prayers.htm";
         var webView = new WebView();
 
         #if ANDROID
-                webView.Source = "file:///android_asset/" + cURL;
+            const string cURL = "prayers.htm";
+            webView.Source = "file:///android_asset/" + cURL;
         #elif IOS               
                 webView.Source = Foundation.NSBundle.MainBundle.PathForResource("prayers", "htm");
         #endif
